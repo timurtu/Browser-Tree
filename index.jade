@@ -8,10 +8,10 @@ html
     body
         div.container-fluid
             nav.navbar.navbar-darg.bg-inverse.navbar-fixed-top.row
-                button.btn.btn-info-outline.col-xs-3.col-sm-2.col-sm-offset-1 Menu
-                form#go-form.col-xs-6
+                button.btn.btn-info-outline.col-xs-2.col-xs-offset-2.col-md-offset-1 Menu
+                form#go-form.col-xs-5.col-md-6
                     input#urlbar.form-control(type='text' value='github.com')
-                submit#go.btn.btn-success-outline.col-xs-3.col-sm-2 Go
+                submit#go.btn.btn-success-outline.col-xs-2 Go
 
         div#views
             webview.webview(src='https://github.com' autosize='on' minwidth="576" minheight="432")

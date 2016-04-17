@@ -7,7 +7,13 @@ var window
 function createWindow() {
 
   // Create the browser window.
-  window = new BrowserWindow({width: 1080, height: 675})
+  window = new BrowserWindow({
+    width: 1080,
+    height: 675,
+    minWidth: 400,
+    minHeight: 200,
+    titleBarStyle: 'hidden'
+  })
 
   // and load the window.html of the app.
   window.loadURL('file://' + __dirname + '/index.jade')
