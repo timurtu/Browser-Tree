@@ -4,27 +4,46 @@
 
 const go = document.getElementById('go')
 const goForm = document.getElementById('go-form')
-const urlBar = document.getElementById('urlbar');
-const webView = document.getElementsByClassName('webview')[0];
+const urlBar = document.getElementById('urlbar')
+const webView = document.getElementById('webview')
 
-go.onclick = () => {
-  goToUrl()
-}
+console.log('dom loading...')
 
-goForm.addEventListener('submit', (event) => {
-  event.preventDefault()
-  goToUrl()
+webView.addEventListener('dom-ready', () => {
+
+  console.log('dom loaded!')
+
+  urlBar.value = webView.getURL()
+
+  urlBar.ondblclick = (event) => {
+    event.target.select()
+  }
+
+  go.onclick = () => {
+    goToURL()
+  }
+
+  goForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+    goToURL()
+  })
+
 })
 
+function goToURL() {
 
-function goToUrl() {
-  if(webView.isLoading()) {
-    loading()
+  let url;
+
+  // Handle http
+  if (urlBar.value.startsWith('http')) {
+    url = urlBar.value
+  } else {
+    url = `http://${urlBar.value}`
   }
-  webView.setAttribute('src', `http://${urlBar.value}`)
+
+  webView.loadURL(url)
   window.scrollTo(0, 0)
+
 }
 
-function loading() {
-  document.body.backgroundColor = 'black';
-}
+
