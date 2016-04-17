@@ -18,6 +18,19 @@ html
         div#views
             webview#webview(src='https://github.com' autosize='on' minwidth="576" minheight="432")
         div#sidebar.hide-sidebar
+            div.btn-group.row
+                div.col-xs-4
+                    button#back.btn.btn-info-outline.btn-block <
+                div.col-xs-4
+                    button#forward.btn.btn-info-outline.btn-block >
+                div.col-xs-4
+                    button#newtab.btn.btn-success-outline.btn-block +
+            div#tabs.list-group.btn-secondary-outline
+                a.list-group-item.active(href='#') Hello
+                a.list-group-item(href='#') Dapibus ac facilisis in
+                a.list-group-item(href='#') Morbi leo risus
+                a.list-group-item(href='#') Porta ac consectetur ac
+                a.list-group-item(href='#') Vestibulum at eros
 
         script(src='./node_modules/jquery/sizzle/dist/sizzle.min.js').
         script(src='./node_modules/jquery/dist/jquery.min.js').

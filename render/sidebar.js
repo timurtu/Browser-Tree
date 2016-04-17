@@ -4,19 +4,40 @@
 
 const menuButton = document.getElementById('menu')
 const sidebar = document.getElementById('sidebar')
+const views = document.getElementById('views')
 
 menuButton.onclick = () => {
-  openMenu()
+  toggleSidebar()
 }
 
-function openMenu() {
+/**
+ * Hide or show the sidebar by changing it's
+ * css class with a transition.
+ */
+function toggleSidebar() {
 
   if(sidebar.className === 'show-sidebar') {
+
     sidebar.className = 'hide-sidebar'
-    console.log('sidebar hidden!')
+
   } else {
+
     sidebar.className = 'show-sidebar'
-    console.log('sidebar shown!')
   }
 
+}
+
+/**
+ * Hide the menu if the screen is clicked.
+ */
+views.onclick = () => {
+
+  console.log('clicked web page')
+
+  if(sidebar.className === 'show-sidebar') {
+
+    console.log('hide sidebar')
+
+    sidebar.className = 'hide-sidebar'
+  }
 }

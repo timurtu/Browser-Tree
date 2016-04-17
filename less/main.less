@@ -45,25 +45,62 @@ html, body {
 *
 */
 #sidebar {
-  transition: .4s ease all;
+  transition: .3s ease all;
   height: 100%;
   position: fixed;
-  left: 0;
   top: 41px;
   border: 5px solid;
   background-color: #373a3c;
+  width: 20em;
+
 }
 
 .show-sidebar {
   opacity: .975;
-  width: 21em;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, .25);
+  left: 0;
 }
 
 .hide-sidebar {
   opacity: 0;
-  width: 0;
-  box-shadow: none;
+  left: -20em;
+}
+
+/**
+*
+* Tabs
+*
+*/
+#tabs {
+
+  background-color: #333;
+  border-color: #333;
+  margin-top: 8px;
+
+  .list-group-item {
+    border: none;
+    padding: 0.125rem 1.25rem;
+  }
+
+  a.list-group-item {
+
+    color: #ddd;
+    background-color: #555;
+    font-size: .85rem;
+
+    &.active {
+      background-color: #666;
+    }
+
+    &:hover {
+      background-color: #373a3c;
+      border-right: 5px outset;
+    }
+
+    &.active:hover {
+      color: #5bc0de;
+    }
+  }
+
 }
 
 /**

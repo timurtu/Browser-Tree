@@ -24,7 +24,7 @@ var webViewObserver = new MutationObserver(function(mutations) {
 // configuration of the observer:
 var config = { attributes: true };
 
-// pass in the webView node, as well as the observer options
+// pass in the views node, as well as the observer options
 webViewObserver.observe(webView, config);
 
 webView.addEventListener('dom-ready', () => {
