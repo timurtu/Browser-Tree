@@ -3,24 +3,35 @@
 * General
 *
 */
-html, body {
-  margin: 0;
-  padding: 0;
+
+html, body{
+  height:100%;
 }
 
+#urlbar {
+  height: 25px;
+}
 
-/**
-*
-* Navigation bar
-*
-*/
-navbar {
-  height: 26px;
-  background-color: #0000cc;
+.form-control {
+  font-size: .85rem;
+}
+
+.btn {
+  height: 24px;
+  padding: 0;
+  font-size: .85rem;
+}
+
+#views, webview {
+  display:inline-flex;
   width: 100%;
-  display: block;
-
-  button {
-    margin: 5px;
-  }
+  height: 100%;
+}
+#views {
+  margin-top: 41px;
+}
+webview.hide {
+  flex: 0 1;
+  width: 0px;
+  height: 0px;
 }

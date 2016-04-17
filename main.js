@@ -14,7 +14,7 @@ function createWindow() {
 
 
   // Open the DevTools.
-  window.webContents.openDevTools()
+  // window.webContents.openDevTools()
 
   // Emitted when the window is closed.
   window.on('closed', function () {

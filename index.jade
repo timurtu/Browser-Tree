@@ -1,14 +1,24 @@
 doctype html
 html
     head
+        meta(name="viewport" content='width=device-width, initial-scale=1, shrink-to-fit=no')
         title='Markup'
-        link(href='less/main.less' rel='stylesheet')
         link(href='node_modules/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet')
+        link(href='less/main.less' rel='stylesheet')
     body
-        // script(src='node_modules/jquery/dist/jquery.js').
+        div.container-fluid
+            nav.navbar.navbar-darg.bg-inverse.navbar-fixed-top.row
+                button.btn.btn-info-outline.col-xs-3.col-sm-2.col-sm-offset-1 Menu
+                div.col-xs-6
+                    input#urlbar.form-control(type='text' placeholder='https://github.com')
+                button.btn.btn-success-outline.col-xs-3.col-sm-2 Go
+
+        div#views
+            webview.webview(src='https://github.com' autosize='on' minwidth="576" minheight="432")
+
         script(src='./node_modules/jquery/sizzle/dist/sizzle.min.js').
         script(src='./node_modules/jquery/dist/jquery.min.js').
         script(src='./node_modules/tether/dist/js/tether.min.js').
         script(defer src='./node_modules/bootstrap/dist/js/bootstrap.min.js').
-        script(src='render/content.js').
+        script(src='render/renderer.js').
         script(src='render/tree.js').
