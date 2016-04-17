@@ -18,5 +18,13 @@ goForm.addEventListener('submit', (event) => {
 
 
 function goToUrl() {
+  if(webView.isLoading()) {
+    loading()
+  }
   webView.setAttribute('src', `http://${urlBar.value}`)
+  window.scrollTo(0, 0)
+}
+
+function loading() {
+  document.body.backgroundColor = 'black';
 }
