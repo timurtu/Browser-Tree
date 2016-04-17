@@ -3,11 +3,20 @@
  */
 
 const menuButton = document.getElementById('menu')
+const sidebar = document.getElementById('sidebar')
 
 menuButton.onclick = () => {
   openMenu()
 }
 
 function openMenu() {
-  console.log('menu opened!')
+
+  if(sidebar.className === 'show-sidebar') {
+    sidebar.className = 'hide-sidebar'
+    console.log('sidebar hidden!')
+  } else {
+    sidebar.className = 'show-sidebar'
+    console.log('sidebar shown!')
+  }
+
 }

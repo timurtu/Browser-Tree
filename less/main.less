@@ -17,7 +17,15 @@ html, body {
   font-size: .85rem;
 }
 
+/**
+*
+* Navbar
+*
+*/
+
 .navbar {
+
+  opacity: .975;
 
   .btn {
 
@@ -30,6 +38,39 @@ html, body {
     }
   }
 }
+
+/**
+*
+* Sidebar
+*
+*/
+#sidebar {
+  transition: .4s ease all;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 41px;
+  border: 5px solid;
+  background-color: #373a3c;
+}
+
+.show-sidebar {
+  opacity: .975;
+  width: 21em;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, .25);
+}
+
+.hide-sidebar {
+  opacity: 0;
+  width: 0;
+  box-shadow: none;
+}
+
+/**
+*
+* Webviews
+*
+*/
 
 #views, #webview {
   display: inline-flex;
