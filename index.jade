@@ -8,10 +8,12 @@ html
     body
         div.container-fluid
             nav.navbar.navbar-darg.bg-inverse.navbar-fixed-top.row
-                button.btn.btn-info-outline.col-xs-2.col-xs-offset-2.col-md-offset-1 Menu
+                div.col-xs-2.col-xs-offset-2.col-md-offset-1
+                    button#menu.btn.btn-info-outline.btn-block Menu
                 form#go-form.col-xs-5.col-md-6
                     input#urlbar.form-control(type='text' value='github.com')
-                submit#go.btn.btn-success-outline.col-xs-2 Go
+                div.col-xs-2
+                    button#go.btn.btn-success-outline.btn-block Go
 
         div#views
             webview#webview(src='https://github.com' autosize='on' minwidth="576" minheight="432")
@@ -21,4 +23,4 @@ html
         script(src='./node_modules/tether/dist/js/tether.min.js').
         script(defer src='./node_modules/bootstrap/dist/js/bootstrap.min.js').
         script(src='render/renderer.js').
-        script(src='render/tree.js').
+        script(src='render/sidebar.js').
