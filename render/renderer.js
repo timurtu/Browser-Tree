@@ -7,11 +7,27 @@ const goForm = document.getElementById('go-form')
 const urlBar = document.getElementById('urlbar')
 const webView = document.getElementById('webview')
 
-console.log('dom loading...')
+/**
+ * Make sure that the urlBar's content matches the currently
+ * loaded web page.
+ *
+ * @type {MutationObserver} Observe the webview
+ */
+var webViewObserver = new MutationObserver(function(mutations) {
+
+  mutations.forEach(function(mutation) {
+
+    urlBar.value = mutation.target.src
+  });
+});
+
+// configuration of the observer:
+var config = { attributes: true };
+
+// pass in the webView node, as well as the observer options
+webViewObserver.observe(webView, config);
 
 webView.addEventListener('dom-ready', () => {
-
-  console.log('dom loaded!')
 
   urlBar.value = webView.getURL()
 
