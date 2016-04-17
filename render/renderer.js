@@ -1,11 +1,22 @@
 /**
  * Created by timur on 4/17/16.
  */
-import $ from 'jquery'
 
-$(() => {
-  $('#go').click(() => {
-    $('.webview').attr('src', `http://${$('#urlbar').val()}`)
-  })
+const go = document.getElementById('go')
+const goForm = document.getElementById('go-form')
+const urlBar = document.getElementById('urlbar');
+const webView = document.getElementsByClassName('webview')[0];
+
+go.onclick = () => {
+  goToUrl()
+}
+
+goForm.addEventListener('submit', (event) => {
+  event.preventDefault()
+  goToUrl()
 })
 
+
+function goToUrl() {
+  webView.setAttribute('src', `http://${urlBar.value}`)
+}
