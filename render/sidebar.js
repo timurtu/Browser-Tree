@@ -25,7 +25,7 @@ newtabButton.onclick = () => {
  */
 function toggleSidebar() {
 
-  if(sidebar.className === 'show-sidebar') {
+  if (sidebar.className === 'show-sidebar') {
 
     sidebar.className = 'hide-sidebar'
 
@@ -45,15 +45,7 @@ function createTab() {
 
   homepage = `https://google.com`;
 
-  // Remove active tabs and views
-  Array.prototype.forEach.call(tabList.childNodes, (tab) => {
-    removeActive(tab)
-  })
-
-  Array.prototype.forEach.call(views.childNodes, (view) => {
-    removeActive(view)
-    view.classList.add('hide')
-  })
+  removeAllActive()
 
   // Create new tab
   const newTab = document.createElement('a')
@@ -63,7 +55,7 @@ function createTab() {
 
   const newView = document.createElement('webview')
   newView.setAttribute('src', homepage)
-  urlBar.value = homepage
+  urlBar.setAttribute('value', homepage)
   newView.className = 'view active'
   views.appendChild(newView)
 
@@ -71,11 +63,28 @@ function createTab() {
 
 }
 
+
+function removeAllActive() {
+
+  // Remove active tabs and views
+  Array.prototype.forEach.call(tabList.childNodes, (tab, i) => {
+
+    const view = views.childNodes.item(i)
+
+    removeActive(tab)
+
+    removeActive(view)
+    view.classList.add('hide')
+  })
+
+}
+
+
 /**
  * Remove the active class from an element
  */
 function removeActive(element) {
-  if(element.classList.contains('active')) {
+  if (element.classList.contains('active')) {
     element.classList.remove('active')
   }
 }
