@@ -5,8 +5,10 @@
 const go = document.getElementById('go')
 const goForm = document.getElementById('go-form')
 const urlBar = document.getElementById('urlbar')
-const activeView = document.querySelector('.view.active')
-const activeTab = document.querySelector('.tab.active')
+
+let activeTab = document.querySelector('.tab.active')
+let activeView = document.querySelector('.view.active')
+
 
 /**
  * Make sure that the urlBar and active tab's content
@@ -14,39 +16,49 @@ const activeTab = document.querySelector('.tab.active')
  *
  * @type {MutationObserver} Observe the webview
  */
-var webViewObserver = new MutationObserver(function (mutations) {
+var webViewObserver = new MutationObserver((mutations) => {
 
-  mutations.forEach(function (mutation) {
+  mutations.forEach((mutation) => {
+
 
     const source = mutation.target.src
 
-    urlBar.value = source
     activeTab.textContent = source
-  });
-});
+    urlBar.value = source
 
-// configuration of the observer:
-var config = {attributes: true};
+    console.log(source)
 
-// pass in the views node, as well as the observer options
-webViewObserver.observe(activeView, config);
+
+    activeView = document.querySelector('.view.active')
+
+  })
+})
+
+
 
 activeView.addEventListener('dom-ready', () => {
 
+
+  // pass in the views node, as well as the observer options
   urlBar.value = activeView.getURL()
 
+  // configuration of the observer:
+  var config = {attributes: true};
+
+  webViewObserver.observe(activeView, config);
+
   go.onclick = () => {
-    goToURL()
+    goToURL(activeView)
   }
 
   goForm.addEventListener('submit', (event) => {
     event.preventDefault()
-    goToURL()
+    goToURL(activeView)
   })
 
 })
 
-function goToURL() {
+function goToURL(activeView) {
 
   let url;
 

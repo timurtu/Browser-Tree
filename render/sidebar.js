@@ -7,6 +7,7 @@ const newtabButton = document.getElementById('newtab')
 const sidebar = document.getElementById('sidebar')
 const views = document.getElementById('views')
 const tabList = document.getElementById('tabs')
+const urlBar = document.getElementById('urlbar')
 
 let homepage
 
@@ -36,28 +37,45 @@ function toggleSidebar() {
 }
 
 /**
- * Create a new tab from the user's set home
- * page, and append it to the list of tabs
- * in the sidebar.
+ * Creates a new tab and webview from the
+ * user's set home page, and append it to
+ * the list of tabs in the sidebar.
  */
 function createTab() {
-  // console.log(tabs)
 
   homepage = `https://google.com`;
 
-  // Remove active tab
+  // Remove active tabs and views
   Array.prototype.forEach.call(tabList.childNodes, (tab) => {
-    if(tab.classList.contains('active')) {
-      tab.classList.remove('active')
-    }
+    removeActive(tab)
+  })
+
+  Array.prototype.forEach.call(views.childNodes, (view) => {
+    removeActive(view)
+    view.classList.add('hide')
   })
 
   // Create new tab
   const newTab = document.createElement('a')
   newTab.className = 'tab list-group-item active'
-  newTab.role = 'button'
   newTab.textContent = homepage
-
   tabList.appendChild(newTab)
 
+  const newView = document.createElement('webview')
+  newView.setAttribute('src', homepage)
+  urlBar.value = homepage
+  newView.className = 'view active'
+  views.appendChild(newView)
+
+  toggleSidebar()
+
+}
+
+/**
+ * Remove the active class from an element
+ */
+function removeActive(element) {
+  if(element.classList.contains('active')) {
+    element.classList.remove('active')
+  }
 }

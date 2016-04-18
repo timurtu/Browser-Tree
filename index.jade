@@ -18,9 +18,6 @@ html
                     button#go.btn.btn-success-outline.btn-block
                         i(aria-hidden='true').fa.fa-chevron-right
 
-        div#views
-            webview.view.active(src='https://github.com' autosize='on' minwidth="576" minheight="432")
-
         div#sidebar.hide-sidebar
             div.row
                 div.col-xs-3
@@ -37,7 +34,10 @@ html
                         i(aria-hidden='true').fa.fa-plus
 
             div#tabs.list-group.btn-secondary-outline
-                a.tab.list-group-item.active
+                a.tab.list-group-item.active https://github.com
+
+        div#views
+            webview.view.active(src='https://github.com')
 
         script(src='./node_modules/jquery/sizzle/dist/sizzle.min.js').
         script(src='./node_modules/jquery/dist/jquery.min.js').
