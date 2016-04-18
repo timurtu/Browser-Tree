@@ -9,7 +9,12 @@ const views = document.getElementById('views')
 const tabList = document.getElementById('tabs')
 const urlBar = document.getElementById('urlbar')
 
-let homepage
+createTab('https://facebook.com')
+createTab('https://twitter.com')
+createTab('https://reddit.com')
+createTab('https://youtube.com')
+createTab('https://npmjs.com')
+createTab('https://github.com')
 
 menuButton.onclick = () => {
   toggleSidebar()
@@ -41,42 +46,63 @@ function toggleSidebar() {
  * user's set home page, and append it to
  * the list of tabs in the sidebar.
  */
-function createTab() {
-
-  homepage = `https://google.com`;
+function createTab(page = 'https://google.com') {
 
   removeAllActive()
 
   // Create new tab
   const newTab = document.createElement('a')
   newTab.className = 'tab list-group-item active'
-  newTab.textContent = homepage
+  newTab.textContent = page
   tabList.appendChild(newTab)
 
   const newView = document.createElement('webview')
-  newView.setAttribute('src', homepage)
-  urlBar.setAttribute('value', homepage)
+  newView.setAttribute('src', page)
+  urlBar.setAttribute('value', page)
   newView.className = 'view active'
   views.appendChild(newView)
 
-  toggleSidebar()
+  handleTabClick(newTab, newView)
+
+  // toggleSidebar()
+
+}
+
+/**
+ * Sets the clicked tab and corresponding view
+ * to active.
+ * @param newTab
+ * @param newView
+ */
+function handleTabClick(newTab, newView) {
+
+
+  newTab.onclick = () => {
+
+    removeAllActive()
+
+    newTab.classList.add('active')
+
+    newView.classList.remove('hide')
+    newView.classList.add('active')
+  }
 
 }
 
 
+/**
+ * Removes all active webviews and tabs
+ */
 function removeAllActive() {
 
   // Remove active tabs and views
   Array.prototype.forEach.call(tabList.childNodes, (tab, i) => {
 
     const view = views.childNodes.item(i)
-
-    removeActive(tab)
-
     removeActive(view)
     view.classList.add('hide')
+    removeActive(tab)
   })
-
 }
 
 
