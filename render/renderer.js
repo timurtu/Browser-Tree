@@ -5,35 +5,35 @@
 const go = document.getElementById('go')
 const goForm = document.getElementById('go-form')
 const urlBar = document.getElementById('urlbar')
-const webView = document.getElementById('webview')
+const activeView = document.querySelector('.view.active')
+const activeTab = document.querySelector('.tab.active')
 
 /**
- * Make sure that the urlBar's content matches the currently
- * loaded web page.
+ * Make sure that the urlBar and active tab's content
+ * matches the currently loaded web page.
  *
  * @type {MutationObserver} Observe the webview
  */
-var webViewObserver = new MutationObserver(function(mutations) {
+var webViewObserver = new MutationObserver(function (mutations) {
 
-  mutations.forEach(function(mutation) {
+  mutations.forEach(function (mutation) {
 
-    urlBar.value = mutation.target.src
+    const source = mutation.target.src
+
+    urlBar.value = source
+    activeTab.textContent = source
   });
 });
 
 // configuration of the observer:
-var config = { attributes: true };
+var config = {attributes: true};
 
 // pass in the views node, as well as the observer options
-webViewObserver.observe(webView, config);
+webViewObserver.observe(activeView, config);
 
-webView.addEventListener('dom-ready', () => {
+activeView.addEventListener('dom-ready', () => {
 
-  urlBar.value = webView.getURL()
-
-  urlBar.ondblclick = (event) => {
-    event.target.select()
-  }
+  urlBar.value = activeView.getURL()
 
   go.onclick = () => {
     goToURL()
@@ -57,7 +57,7 @@ function goToURL() {
     url = `http://${urlBar.value}`
   }
 
-  webView.loadURL(url)
+  activeView.loadURL(url)
   window.scrollTo(0, 0)
 
 }

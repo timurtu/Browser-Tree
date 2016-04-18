@@ -3,11 +3,17 @@
  */
 
 const menuButton = document.getElementById('menu')
+const newtabButton = document.getElementById('newtab')
 const sidebar = document.getElementById('sidebar')
 const views = document.getElementById('views')
+const tabs = document.getElementById('tabs').childNodes
 
 menuButton.onclick = () => {
   toggleSidebar()
+}
+
+newtabButton.onclick = () => {
+  createTab()
 }
 
 /**
@@ -28,16 +34,10 @@ function toggleSidebar() {
 }
 
 /**
- * Hide the menu if the screen is clicked.
+ * Create a new tab from the user's set home
+ * page, and append it to the list of tabs
+ * in the sidebar.
  */
-views.onclick = () => {
-
-  console.log('clicked web page')
-
-  if(sidebar.className === 'show-sidebar') {
-
-    console.log('hide sidebar')
-
-    sidebar.className = 'hide-sidebar'
-  }
+function createTab() {
+  console.log(tabs);
 }

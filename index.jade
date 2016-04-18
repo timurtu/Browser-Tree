@@ -4,37 +4,52 @@ html
         meta(name="viewport" content='width=device-width, initial-scale=1, shrink-to-fit=no')
         title='Browser Tree'
         link(href='node_modules/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet')
+        link(href='./node_modules/font-awesome/css/font-awesome.min.css' rel='stylesheet').
         link(href='less/main.less' rel='stylesheet')
     body
         div.container-fluid
             nav.navbar.navbar-darg.bg-inverse.navbar-fixed-top.row
                 div.col-xs-2.col-xs-offset-2.col-md-offset-1
-                    button#menu.btn.btn-info-outline.btn-block Menu
+                    button#menu.btn.btn-info-outline.btn-block
+                        i(aria-hidden='true').fa.fa-bars
                 form#go-form.col-xs-5.col-md-6
                     input#urlbar.form-control(type='text' value='github.com')
                 div.col-xs-2
-                    button#go.btn.btn-success-outline.btn-block Go
+                    button#go.btn.btn-success-outline.btn-block
+                        i(aria-hidden='true').fa.fa-chevron-right
 
         div#views
-            webview#webview(src='https://github.com' autosize='on' minwidth="576" minheight="432")
+            webview.view.active(src='https://github.com' autosize='on' minwidth="576" minheight="432")
+
         div#sidebar.hide-sidebar
-            div.btn-group.row
-                div.col-xs-4
-                    button#back.btn.btn-info-outline.btn-block <
-                div.col-xs-4
-                    button#forward.btn.btn-info-outline.btn-block >
-                div.col-xs-4
-                    button#newtab.btn.btn-success-outline.btn-block +
+            div.row
+                div.col-xs-3
+                    button#back.btn.btn-info-outline.btn-block
+                        i(aria-hidden='true').fa.fa-caret-left
+                div.col-xs-3
+                    button#forward.btn.btn-info-outline.btn-block
+                        i(aria-hidden='true').fa.fa-caret-right
+                div.col-xs-3
+                    button#bookmarks.btn.btn-warning-outline.btn-block
+                        i(aria-hidden='true').fa.fa-star
+                div.col-xs-3
+                    button#newtab.btn.btn-success-outline.btn-block
+                        i(aria-hidden='true').fa.fa-plus
+
             div#tabs.list-group.btn-secondary-outline
-                a.list-group-item.active(href='#') Hello
-                a.list-group-item(href='#') Dapibus ac facilisis in
-                a.list-group-item(href='#') Morbi leo risus
-                a.list-group-item(href='#') Porta ac consectetur ac
-                a.list-group-item(href='#') Vestibulum at eros
+                a.tab.list-group-item.active(role='button')
+                    // i(aria-hidden='true').fa-pull-left.fa.fa-caret-square-o-down &nbsp;
+                a.tab.list-group-item(role='button')
+                    //i(aria-hidden='true').fa.fa-caret-square-o-down &nbsp;
+                    Dapibus ac facilisis in &nbsp;
+                    // i(aria-hidden='true').fa.fa-times.fa-pull-right
+                a.tab.list-group-item(role='button') Morbi leo risus
+                a.tab.list-group-item(role='button') Porta ac consectetur ac
+                a.tab.list-group-item(role='button') Vestibulum at eros
 
         script(src='./node_modules/jquery/sizzle/dist/sizzle.min.js').
         script(src='./node_modules/jquery/dist/jquery.min.js').
         script(src='./node_modules/tether/dist/js/tether.min.js').
         script(defer src='./node_modules/bootstrap/dist/js/bootstrap.min.js').
-        script(src='render/renderer.js').
-        script(src='render/sidebar.js').
+        script(src='./render/renderer.js').
+        script(src='./render/sidebar.js').
