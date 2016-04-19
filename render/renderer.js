@@ -54,7 +54,6 @@ goForm.addEventListener('submit', (event) => {
 })
 
 
-
 function goToURL() {
 
   let url;
