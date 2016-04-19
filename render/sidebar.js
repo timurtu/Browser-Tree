@@ -22,6 +22,7 @@ menuButton.onclick = () => {
 
 newtabButton.onclick = () => {
   createTab()
+  urlBar.selection.selectAllChildren(urlBar)
 }
 
 /**
@@ -64,8 +65,6 @@ function createTab(page = 'https://google.com') {
 
   handleTabClick(newTab, newView)
 
-  // toggleSidebar()
-
 }
 
 /**
@@ -85,6 +84,7 @@ function handleTabClick(newTab, newView) {
 
     newView.classList.remove('hide')
     newView.classList.add('active')
+
   }
 
 }
