@@ -15,7 +15,7 @@ createTab('https://reddit.com')
 createTab('https://youtube.com')
 createTab('https://npmjs.com')
 createTab('https://nodejs.org')
-createTab('https://electron.atom.io')
+createTab('http://electron.atom.io')
 createTab('https://github.com')
 
 menuButton.onclick = () => {
@@ -71,22 +71,33 @@ function createTab(page = 'https://google.com') {
 /**
  * Sets the clicked tab and corresponding view
  * to active.
+ *
  * @param newTab
  * @param newView
  */
 function handleTabClick(newTab, newView) {
 
 
-  newTab.onclick = () => {
+  newTab.onclick = (event) => {
 
-    removeAllActive()
+    if(event.clientX > 290) {
+      console.log(event)
+    }
 
-    newTab.classList.add('active')
-
-    newView.classList.remove('hide')
-    newView.classList.add('active')
+    setToActive(newTab, newView)
 
   }
+
+}
+
+function setToActive(tab, view) {
+
+  removeAllActive()
+
+  tab.classList.add('active')
+
+  view.classList.remove('hide')
+  view.classList.add('active')
 
 }
 
