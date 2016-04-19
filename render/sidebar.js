@@ -14,6 +14,8 @@ createTab('https://twitter.com')
 createTab('https://reddit.com')
 createTab('https://youtube.com')
 createTab('https://npmjs.com')
+createTab('https://nodejs.org')
+createTab('https://electron.atom.io')
 createTab('https://github.com')
 
 menuButton.onclick = () => {
@@ -22,7 +24,6 @@ menuButton.onclick = () => {
 
 newtabButton.onclick = () => {
   createTab()
-  urlBar.selection.selectAllChildren(urlBar)
 }
 
 /**
@@ -101,6 +102,7 @@ function removeAllActive() {
     const view = views.childNodes.item(i)
     removeActive(view)
     view.classList.add('hide')
+
     removeActive(tab)
   })
 }

@@ -6,61 +6,51 @@ const go = document.getElementById('go')
 const goForm = document.getElementById('go-form')
 const urlBar = document.getElementById('urlbar')
 
-let activeTab = document.querySelector('.tab.active')
 const views = document.getElementById('views')
+const tabs = document.getElementById('tabs')
 
 
-/**
- * Make sure that the urlBar and active tab's content
- * matches the currently loaded web page.
- *
- * @type {MutationObserver} Observe the webview
- */
-const webViewObserver = new MutationObserver((mutations) => {
+var currentView
+var currentURL
+
+const viewObserver = new MutationObserver((mutations) => {
 
   mutations.forEach((mutation) => {
 
+    if (views.hasChildNodes()) {
 
-    const source = mutation.target.src
+      Array.prototype.forEach.call(views.childNodes, (view, i) => {
 
-    activeTab.textContent = source
+        if (view.classList.contains('active')) {
 
+          currentView = view
 
-  })
-})
+          currentURL = currentView.getAttribute('src')
 
-
-// configuration of the observer
-const config = {attributes: true};
-
-Array.prototype.forEach.call(views.childNodes, (view) => {
-
-  console.log(view)
-
-  view.addEventListener('dom-ready', () => {
-
-    webViewObserver.observe(view, config);
-
-    go.onclick = () => {
-
-      goToURL(view)
+          urlBar.value = currentURL
+          tabs.childNodes.item(i).textContent = currentURL
+        }
+      })
     }
-
-    goForm.addEventListener('submit', (event) => {
-
-      event.preventDefault()
-      goToURL(view)
-    })
-
-    //
-    // // pass in the views node, as well as the observer options
-    // urlBar.value = view.getURL()
-
   })
 })
 
+viewObserver.observe(views, {attributes: true, subtree: true})
 
-function goToURL(activeView) {
+go.onclick = () => {
+
+  goToURL()
+}
+
+goForm.addEventListener('submit', (event) => {
+
+  event.preventDefault()
+  goToURL()
+})
+
+
+
+function goToURL() {
 
   let url;
 
@@ -71,7 +61,8 @@ function goToURL(activeView) {
     url = `http://${urlBar.value}`
   }
 
-  activeView.loadURL(url)
+  currentView.loadURL(url)
+
   window.scrollTo(0, 0)
 
 }
