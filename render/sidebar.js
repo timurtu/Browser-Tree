@@ -9,14 +9,21 @@ const views = document.getElementById('views')
 const tabList = document.getElementById('tabs')
 const urlBar = document.getElementById('urlbar')
 
-createTab('https://facebook.com')
-createTab('https://twitter.com')
-createTab('https://reddit.com')
-createTab('https://youtube.com')
-createTab('https://npmjs.com')
-createTab('https://nodejs.org')
-createTab('http://electron.atom.io')
-createTab('https://github.com')
+import fs from 'fs'
+
+/**
+ * Read tabs from a JSON file
+ */
+fs.readFile('./res/tabs.json', (err, data) => {
+
+  if(err) throw err;
+
+  const tabsFromFile = JSON.parse(data)
+  
+  tabsFromFile.forEach((tabFromFile) => {
+    createTab(tabFromFile)
+  })
+})
 
 menuButton.onclick = () => {
   toggleSidebar()
@@ -76,7 +83,6 @@ function createTab(page = 'https://google.com') {
  * @param newView
  */
 function handleTabClick(newTab, newView) {
-
 
   newTab.onclick = (event) => {
 

@@ -36,12 +36,20 @@ const viewObserver = new MutationObserver((mutations) => {
           urlBar.value = currentURL
 
 
-          if(tabs.hasChildNodes()) {
+          if (tabs.hasChildNodes()) {
 
-            if(tabs.childNodes.length > i) {
+            if (tabs.childNodes.length > i) {
 
               currentTab = tabs.childNodes.item(i)
-              currentTab.textContent = currentURL
+
+              // Handle tab height
+              const textLength = 35
+              console.log(currentURL.length)
+              if (currentURL.length > textLength) {
+                currentTab.textContent = `${currentURL.slice(0, textLength)}...`
+              } else {
+                currentTab.textContent = currentURL
+              }
             }
           }
         }
@@ -62,6 +70,10 @@ goForm.addEventListener('submit', (event) => {
   event.preventDefault()
   goToURL()
 })
+
+urlBar.onclick = (event) => {
+  event.target.select()
+}
 
 
 function goToURL() {
