@@ -9,10 +9,15 @@ const urlBar = document.getElementById('urlbar')
 const views = document.getElementById('views')
 const tabs = document.getElementById('tabs')
 
-
 var currentView
 var currentURL
 
+/**
+ * Observe the current active view and set the URL of
+ * the current active tab and urlbar accordingly.
+ *
+ * @type {MutationObserver} Observe the views div's children
+ */
 const viewObserver = new MutationObserver((mutations) => {
 
   mutations.forEach((mutation) => {
