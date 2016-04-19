@@ -11,6 +11,7 @@ const tabs = document.getElementById('tabs')
 
 var currentView
 var currentURL
+var currentTab
 
 /**
  * Observe the current active view and set the URL of
@@ -33,7 +34,16 @@ const viewObserver = new MutationObserver((mutations) => {
           currentURL = currentView.getAttribute('src')
 
           urlBar.value = currentURL
-          tabs.childNodes.item(i).textContent = currentURL
+
+
+          if(tabs.hasChildNodes()) {
+
+            if(tabs.childNodes.length > i) {
+
+              currentTab = tabs.childNodes.item(i)
+              currentTab.textContent = currentURL
+            }
+          }
         }
       })
     }

@@ -80,16 +80,39 @@ function handleTabClick(newTab, newView) {
 
   newTab.onclick = (event) => {
 
+    // Clicked on the x button
     if(event.clientX > 290) {
-      console.log(event)
+      closeTab(newTab, newView)
     }
-
-    setToActive(newTab, newView)
+    else if(event.clientX < 15) {
+      console.log(event.target)
+    }
+    else {
+      setToActive(newTab, newView)
+    }
 
   }
 
 }
 
+/**
+ * Closes the tab passed in and removes the corresponding
+ * webview.
+ *
+ * @param tab
+ */
+function closeTab(tab, view) {
+  tabList.removeChild(tab)
+  views.removeChild(view)
+}
+
+
+/**
+ * Sets a tab and view's classes to active
+ *
+ * @param tab
+ * @param view
+ */
 function setToActive(tab, view) {
 
   removeAllActive()
