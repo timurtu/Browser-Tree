@@ -43,7 +43,7 @@ const viewObserver = new MutationObserver((mutations) => {
               currentTab = tabs.childNodes.item(i)
 
               // Handle tab height
-              const textLength = 35
+              const textLength = 32
               console.log(currentURL.length)
               if (currentURL.length > textLength) {
                 currentTab.textContent = `${currentURL.slice(0, textLength)}...`
