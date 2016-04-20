@@ -34,6 +34,15 @@ newtabButton.onclick = () => {
 }
 
 /**
+ * Make the sidebar resizable by detecting when
+ * the mouse is over its current width and resizing
+ * on drag.
+ */
+sidebar.onresize = (event) => {
+  console.log(event)
+}
+
+/**
  * Hide or show the sidebar by changing it's
  * css class with a transition.
  */
