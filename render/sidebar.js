@@ -8,18 +8,20 @@ const sidebar = document.getElementById('sidebar')
 const views = document.getElementById('views')
 const tabList = document.getElementById('tabs')
 const urlBar = document.getElementById('urlbar')
+const resizeBar = document.getElementById('resizebar')
 
 import fs from 'fs'
+
 
 /**
  * Read tabs from a JSON file
  */
 fs.readFile('./res/tabs.json', (err, data) => {
 
-  if(err) throw err;
+  if (err) throw err;
 
   const tabsFromFile = JSON.parse(data)
-  
+
   tabsFromFile.forEach((tabFromFile) => {
     createTab(tabFromFile)
   })
@@ -33,14 +35,41 @@ newtabButton.onclick = () => {
   createTab()
 }
 
-/**
- * Make the sidebar resizable by detecting when
- * the mouse is over its current width and resizing
- * on drag.
- */
-sidebar.onresize = (event) => {
-  console.log(event)
+let resizingSidebar
+
+document.onmousemove = event => {
+  if (resizingSidebar) {
+    sidebar.style.width = `${event.clientX}px`
+    resizeBar.style.left = `${event.clientX}px`
+    sidebar.style.transition = 'none'
+    resizeBar.style.transition = 'none'
+  }
 }
+document.onmouseup = event => {
+
+  resizingSidebar = false
+  sidebar.style.transition = '.3s ease all'
+  resizeBar.style.transition = '.3s ease all'
+
+  let min = 300
+  let max = 800
+
+  if (sidebar.offsetWidth < 200) {
+    toggleSidebar()
+    sidebar.style.width = `${min}px`
+    resizeBar.style.left = `${min}px`
+  } else if (sidebar.offsetWidth > max) {
+    sidebar.style.width = `${max}px`
+    resizeBar.style.left = `${max}px`
+
+  }
+
+}
+
+resizeBar.onmousedown = event => {
+  resizingSidebar = true
+}
+
 
 /**
  * Hide or show the sidebar by changing it's
@@ -48,7 +77,8 @@ sidebar.onresize = (event) => {
  */
 function toggleSidebar() {
 
-  if (sidebar.className === 'show-sidebar') {
+
+  if (sidebar.className == 'show-sidebar') {
 
     sidebar.className = 'hide-sidebar'
 
@@ -93,13 +123,13 @@ function createTab(page = 'https://google.com') {
  */
 function handleTabClick(newTab, newView) {
 
-  newTab.onclick = (event) => {
+  newTab.onclick = event => {
 
     // Clicked on the x button
-    if(event.clientX > 290) {
+    if (event.clientX > 290) {
       closeTab(newTab, newView)
     }
-    else if(event.clientX < 15) {
+    else if (event.clientX < 15) {
       console.log(event.target)
     }
     else {

@@ -9,6 +9,7 @@ const urlBar = document.getElementById('urlbar')
 const views = document.getElementById('views')
 const tabs = document.getElementById('tabs')
 
+
 var currentView
 var currentURL
 var currentTab
@@ -35,16 +36,14 @@ const viewObserver = new MutationObserver((mutations) => {
 
           urlBar.value = currentURL
 
-
           if (tabs.hasChildNodes()) {
 
-            if (tabs.childNodes.length > i) {
+            if (tabs.childNodes.item(i)) {
 
               currentTab = tabs.childNodes.item(i)
 
               // Handle tab height
               const textLength = 32
-              console.log(currentURL.length)
               if (currentURL.length > textLength) {
                 currentTab.textContent = `${currentURL.slice(0, textLength)}...`
               } else {

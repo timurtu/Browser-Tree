@@ -21,6 +21,8 @@ a, button, .btn, .list-group-item:hover {
   font-size: .85rem;
 }
 
+
+
 /**
 *
 * Navbar
@@ -50,7 +52,7 @@ a, button, .btn, .list-group-item:hover {
   transition: .3s ease all;
   height: 95%;
   position: fixed;
-  top: 41px;
+  top: 2.5em;
   border: 5px solid;
   background-color: #373a3c;
   width: 20em;
@@ -64,6 +66,19 @@ a, button, .btn, .list-group-item:hover {
 .hide-sidebar {
   opacity: 0;
   left: -20em;
+}
+
+#resizebar {
+  position: fixed;
+  width: 3px;
+  height: 96%;
+  background-color: #969696;
+  top: 2.5em;
+  left: 20em;
+
+  &:hover {
+    cursor: ew-resize;
+  }
 }
 
 /**
