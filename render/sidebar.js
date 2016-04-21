@@ -123,15 +123,33 @@ function createTab(page = 'https://google.com') {
  */
 function handleTabClick(newTab, newView) {
 
+  // Handle each tab's clicks separately
   newTab.onclick = event => {
 
-    // Clicked on the x button
+    // Clicked on the x button so close the tab
     if (event.clientX > newTab.offsetWidth - 22) {
+
+      // Handle top tab
+      if (newTab.previousSibling) {
+
+        // If you close the current tab, set the one before it to active
+        if (newTab.classList.contains('active')) {
+
+          // Tab above this one
+          setToActive(newTab.previousSibling, newView.previousSibling)
+        }
+      }
+
       closeTab(newTab, newView)
     }
+
+    // Tree View goes here
     else if (event.clientX < 15) {
       console.log(event.target)
     }
+
+    // If not closing the tab or selecting more options
+    // Then set it to the active tab
     else {
       setToActive(newTab, newView)
     }
