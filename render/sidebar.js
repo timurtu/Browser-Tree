@@ -126,7 +126,7 @@ function handleTabClick(newTab, newView) {
   newTab.onclick = event => {
 
     // Clicked on the x button
-    if (event.clientX > 290) {
+    if (event.clientX > newTab.offsetWidth - 22) {
       closeTab(newTab, newView)
     }
     else if (event.clientX < 15) {
