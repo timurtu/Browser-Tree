@@ -35,39 +35,90 @@ newtabButton.onclick = () => {
   createTab()
 }
 
-let resizingSidebar
-
+// Boolean reference to whether or not the sidebar is resizing
+let sidebarIsResizing
+/**
+ *
+ * Fires an event whenever the mouse moves anywhere on the page.
+ *
+ * @param event MouseEvent
+ */
 document.onmousemove = event => {
-  if (resizingSidebar) {
+
+  if (sidebarIsResizing) {
+
+    // Set the sidebar's width to the mouse x location
     sidebar.style.width = `${event.clientX}px`
+    // Same with the resizebar except it's location
     resizeBar.style.left = `${event.clientX}px`
+
+    // Stop using the transition for sidebar resizing
+    // because it
     sidebar.style.transition = 'none'
     resizeBar.style.transition = 'none'
+
+    // Set each tabs URL text length to the width of the sidebar
+
   }
 }
+
+function resizeTab() {
+
+}
+
+/**
+ * Fires an event when the left mouse button is let go.
+ *
+ * @param event MouseEvent
+ */
 document.onmouseup = event => {
 
-  resizingSidebar = false
+  // You can't resize the sidebar if the mouse is up
+  sidebarIsResizing = false
+
+  // Bring those smooth transitions back to the sidebar
   sidebar.style.transition = '.3s ease all'
   resizeBar.style.transition = '.3s ease all'
 
+  // Minimum and maximum sizes of the sidebar.
   let min = 300
   let max = 800
 
-  if (sidebar.offsetWidth < 200) {
+
+  // Don't let the user make the sidebar smaller than this value.
+  if (sidebar.offsetWidth < min) {
+
+    // Hide it when they do
     toggleSidebar()
+
+    // Set these values back to the minimum to handle the smaller
+    // value the user tried to put and after toggling the sidebar
+    // so the transition works as expected.
     sidebar.style.width = `${min}px`
     resizeBar.style.left = `${min}px`
+
   } else if (sidebar.offsetWidth > max) {
+
+    // Set the sidebar to the max when the user tries to go
+    // above it. I like this effect.
     sidebar.style.width = `${max}px`
     resizeBar.style.left = `${max}px`
-
   }
 
 }
 
+/**
+ * Fires an event when the mouse is down on the
+ * tiny resizebar.
+ *
+ * @param event MouseEvent
+ */
 resizeBar.onmousedown = event => {
-  resizingSidebar = true
+
+  // The sidebar starts resizing. This needs the above mousemove
+  // event handling because this event only fires once when the
+  // mouse button is clicked.
+  sidebarIsResizing = true
 }
 
 
@@ -123,11 +174,13 @@ function createTab(page = 'https://google.com') {
  */
 function handleTabClick(newTab, newView) {
 
+  const closeButtonWidth = 22
+
   // Handle each tab's clicks separately
   newTab.onclick = event => {
 
     // Clicked on the x button so close the tab
-    if (event.clientX > newTab.offsetWidth - 22) {
+    if (event.clientX > newTab.offsetWidth - closeButtonWidth) {
 
       // Handle top tab
       if (newTab.previousSibling) {
