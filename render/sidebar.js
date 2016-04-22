@@ -78,7 +78,7 @@ document.onmouseup = event => {
   resizeBar.style.transition = '.3s ease all'
 
   // Minimum and maximum sizes of the sidebar.
-  let min = 300
+  let min = 250
   let max = 800
 
 
@@ -125,13 +125,9 @@ resizeBar.onmousedown = event => {
  */
 function toggleSidebar() {
 
-
   if (sidebar.className == 'show-sidebar') {
-
     sidebar.className = 'hide-sidebar'
-
   } else {
-
     sidebar.className = 'show-sidebar'
   }
 
