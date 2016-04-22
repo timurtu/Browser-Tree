@@ -17,11 +17,8 @@ import fs from 'fs'
  * Read tabs from a JSON file
  */
 fs.readFile('./res/tabs.json', (err, data) => {
-
   if (err) throw err;
-
   const tabsFromFile = JSON.parse(data)
-
   tabsFromFile.forEach((tabFromFile) => {
     createTab(tabFromFile)
   })
@@ -49,17 +46,17 @@ document.onmousemove = event => {
 
     // Set the sidebar's width to the mouse x location
     sidebar.style.width = `${event.clientX}px`
+
     // Same with the resizebar except it's location
     resizeBar.style.left = `${event.clientX}px`
 
     // Stop using the transition for sidebar resizing
-    // because it
     sidebar.style.transition = 'none'
     resizeBar.style.transition = 'none'
 
     // Set each tabs URL text length to the width of the sidebar
-
   }
+
 }
 
 function resizeTab() {
