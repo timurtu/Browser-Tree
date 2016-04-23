@@ -36,6 +36,7 @@ const webviewObserver = new MutationObserver(webviewMutations => {
           currentURL = currentView.getAttribute('src')
           // Set it to the address bar
           urlBar.value = currentURL
+
           // If there's any tabs
           if (tabsDiv.hasChildNodes()) {
             // If there's a tab that corresponds to this view

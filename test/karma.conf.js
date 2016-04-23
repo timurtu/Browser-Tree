@@ -4,18 +4,16 @@
 // karma.conf.js
 module.exports = (config) => {
   config.set({
+
+    basePath: './',
+
     frameworks: ['jasmine'],
 
     browsers: ['Electron'],
 
     files: [
-      '**/*.js'
-    ],
-
-    client: {
-      captureConsole: true,
-      clearContext: true
-    }
+      '**/*[sS]pec.js'
+    ]
 
   })
 }

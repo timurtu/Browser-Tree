@@ -4,10 +4,10 @@
   "description": "A web browser with tab treeview built on Electron",
   "main": "main.js",
   "scripts": {
-    "start": "npm-run-all --parallel electron lint",
-    "electron": "electron main.js",
-    "test": "karma start spec/karma.conf.js",
-    "lint": "node_modules/jshint/bin/jshint --verbose --reporter=node_modules/jshint-stylish ./src ./main.js",
+    "start": "electron main.js",
+    "test": "npm-run-all --parallel karma lint",
+    "karma": "karma start test/karma.conf.js",
+    "lint": "node_modules/jshint/bin/jshint --verbose --reporter=node_modules/jshint-stylish ./src ./test ./main.js",
     "clean": "rm -Rf node_modules"
   },
   "jshintConfig": {
