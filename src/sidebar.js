@@ -8,14 +8,12 @@ const menuButton = document.getElementById('menu')
 const newtabButton = document.getElementById('newtab')
 const sidebar = document.getElementById('sidebar')
 const views = document.getElementById('views')
-const tabList = document.getElementById('tabs')
 const urlBar = document.getElementById('urlbar')
 const resizeBar = document.getElementById('resizebar')
 
-// import {remote} from 'electron'
-
-// const app = remote.app
-
+const minSidebarWidth = 250
+const maxSidebarWidth = 800
+const defaultSidebarWidth = '20em';
 const tabsFile = './res/tabs.json'
 
 /**
@@ -126,13 +124,8 @@ document.onmouseup = event => {
   sidebar.style.transition = '.3s ease all'
   resizeBar.style.transition = '.3s ease all'
 
-  // Minimum and maximum sizes of the sidebar.
-  let min = 250
-  let max = 800
-
-
   // Don't let the user make the sidebar smaller than this value.
-  if (sidebar.offsetWidth < min) {
+  if (sidebar.offsetWidth < minSidebarWidth) {
 
     // Hide it when they do
     toggleSidebar()
@@ -140,15 +133,15 @@ document.onmouseup = event => {
     // Set these values back to the minimum to handle the smaller
     // value the user tried to put and after toggling the sidebar
     // so the transition works as expected.
-    sidebar.style.width = '20em'
-    resizeBar.style.left = `20em`
+    sidebar.style.width = defaultSidebarWidth
+    resizeBar.style.left = defaultSidebarWidth
 
-  } else if (sidebar.offsetWidth > max) {
+  } else if (sidebar.offsetWidth > maxSidebarWidth) {
 
     // Set the sidebar to the max when the user tries to go
     // above it. I like this effect.
-    sidebar.style.width = `${max}px`
-    resizeBar.style.left = `${max}px`
+    sidebar.style.width = `${maxSidebarWidth}px`
+    resizeBar.style.left = `${maxSidebarWidth}px`
   }
 
 }
