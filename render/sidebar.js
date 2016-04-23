@@ -11,20 +11,20 @@ const urlBar = document.getElementById('urlbar')
 const resizeBar = document.getElementById('resizebar')
 
 import fs from 'fs'
-import {remote} from 'electron'
+// import {remote} from 'electron'
 
-const app = remote.app
+// const app = remote.app
 
 const tabsFile = './res/tabs.json'
 
 /**
  * Save tabs
  */
-app.on('window-all-closed', () => {
-  fs.writeFile(tabsFile, JSON.stringify(tabsList), (err) => {
-    if (err) throw err
-  })
-})
+// app.on('window-all-closed', () => {
+//   fs.writeFile(tabsFile, JSON.stringify(tabsList), (err) => {
+//     if (err) throw err
+//   })
+// })
 
 /**
  * Read tabs from a JSON file
@@ -57,6 +57,8 @@ document.onmousemove = event => {
 
   if (sidebarIsResizing) {
 
+    event.preventDefault()
+
     // Set the sidebar's width to the mouse x location
     sidebar.style.width = `${event.clientX}px`
 
@@ -67,12 +69,35 @@ document.onmousemove = event => {
     sidebar.style.transition = 'none'
     resizeBar.style.transition = 'none'
 
-    // Set each tabs URL text length to the width of the sidebar
+
+    // console.log(tabList)
+    resizeTabNames()
   }
 
 }
 
-function resizeTab() {
+/**
+ * Set each tabs URL text length to the width of the sidebar
+ */
+function resizeTabNames() {
+
+  const textLength = sidebar.offsetWidth / 10
+
+  Array.prototype.forEach.call(tabList.childNodes, (tab, i) => {
+
+    let view = views.childNodes.item(i)
+
+    if (view) {
+
+      if (view.src.length > textLength) {
+        tab.textContent = `${view.src.slice(0, textLength)}...`
+      } else {
+        tab.textContent = view.src
+      }
+
+    }
+
+  })
 
 }
 
@@ -141,6 +166,7 @@ function toggleSidebar() {
   if (sidebar.className == 'show-sidebar') {
     sidebar.className = 'hide-sidebar'
   } else {
+    resizeTabNames()
     sidebar.className = 'show-sidebar'
   }
 
@@ -168,6 +194,7 @@ function createTab(page = 'https://google.com') {
   views.appendChild(newView)
 
   handleTabClick(newTab, newView)
+  resizeTabNames()
 
 }
 

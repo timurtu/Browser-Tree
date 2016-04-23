@@ -9,6 +9,7 @@ const urlBar = document.getElementById('urlbar')
 const views = document.getElementById('views')
 const tabs = document.getElementById('tabs')
 
+
 let currentView
 let currentURL
 let currentTab
@@ -47,28 +48,7 @@ const viewObserver = new MutationObserver(viewChanges => {
 
               // Keep a reference to that tab
               currentTab = tabs.childNodes.item(i)
-
-              // Detect web view
-
-              var indicator = document.querySelector(".indicator");
-
-              var loadstart = function() {
-                indicator.innerText = "loading...";
-              }
-              var loadstop = function() {
-                indicator.innerText = "";
-              }
-              
-              currentView.addEventListener("did-start-loading", loadstart);
-              currentView.addEventListener("did-stop-loading", loadstop);
-
-              // Handle this tab's text length
-              const textLength = 32
-              if (currentURL.length > textLength) {
-                currentTab.textContent = `${currentURL.slice(0, textLength)}...`
-              } else {
-                currentTab.textContent = currentURL
-              }
+              resizeTabNames()
 
             }
           }
