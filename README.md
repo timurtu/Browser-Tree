@@ -9,6 +9,7 @@ With NodeJS built in we get access to a fast non-blocking API and over 250K (and
 
 ## Build from Source
 1. `git clone https://github.com/timurtu/browster.git`
+1. `cd browster`
 1. `npm install` to install dependencies
 1. `npm start` to Start the app and lint
 1. `npm test` to run Unit Tests
