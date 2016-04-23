@@ -19,7 +19,7 @@ let currentTab
  *
  * @type {MutationObserver} Observe the views div's children
  */
-const viewObserver = new MutationObserver((viewChanges) => {
+const viewObserver = new MutationObserver(viewChanges => {
 
   viewChanges.forEach((viewChanged) => {
 
@@ -47,6 +47,20 @@ const viewObserver = new MutationObserver((viewChanges) => {
 
               // Keep a reference to that tab
               currentTab = tabs.childNodes.item(i)
+
+              // Detect web view
+
+              var indicator = document.querySelector(".indicator");
+
+              var loadstart = function() {
+                indicator.innerText = "loading...";
+              }
+              var loadstop = function() {
+                indicator.innerText = "";
+              }
+              
+              currentView.addEventListener("did-start-loading", loadstart);
+              currentView.addEventListener("did-stop-loading", loadstop);
 
               // Handle this tab's text length
               const textLength = 32
@@ -102,7 +116,4 @@ function goToURL() {
 
   // Scroll to the top of the new page
   window.scrollTo(0, 0)
-
 }
-
-

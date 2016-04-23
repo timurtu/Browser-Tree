@@ -11,12 +11,25 @@ const urlBar = document.getElementById('urlbar')
 const resizeBar = document.getElementById('resizebar')
 
 import fs from 'fs'
+import {remote} from 'electron'
 
+const app = remote.app
+
+const tabsFile = './res/tabs.json'
+
+/**
+ * Save tabs
+ */
+app.on('window-all-closed', () => {
+  fs.writeFile(tabsFile, JSON.stringify(tabsList), (err) => {
+    if (err) throw err
+  })
+})
 
 /**
  * Read tabs from a JSON file
  */
-fs.readFile('./res/tabs.json', (err, data) => {
+fs.readFile(tabsFile, (err, data) => {
   if (err) throw err;
   const tabsFromFile = JSON.parse(data)
   tabsFromFile.forEach((tabFromFile) => {
