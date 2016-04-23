@@ -2,15 +2,16 @@
  * Created by timur on 4/17/16.
  */
 
+import fs from 'fs'
+
 const menuButton = document.getElementById('menu')
 const newtabButton = document.getElementById('newtab')
 const sidebar = document.getElementById('sidebar')
 const views = document.getElementById('views')
-const tabList = document.getElementById('tabs')
+// const tabList = document.getElementById('tabs')
 const urlBar = document.getElementById('urlbar')
 const resizeBar = document.getElementById('resizebar')
 
-import fs from 'fs'
 // import {remote} from 'electron'
 
 // const app = remote.app
@@ -18,13 +19,23 @@ import fs from 'fs'
 const tabsFile = './res/tabs.json'
 
 /**
- * Save tabs
+ * Save tab
  */
 // app.on('window-all-closed', () => {
 //   fs.writeFile(tabsFile, JSON.stringify(tabsList), (err) => {
 //     if (err) throw err
 //   })
 // })
+
+function saveTabs() {
+  
+ 
+  // fs.writeFile(tabsFile, , err => {
+  //   if(err) throw err
+  // })
+}
+
+saveTabs()
 
 /**
  * Read tabs from a JSON file
@@ -77,13 +88,13 @@ document.onmousemove = event => {
 }
 
 /**
- * Set each tabs URL text length to the width of the sidebar
+ * Set each tab's URL text length to the width of the sidebar
  */
 function resizeTabNames() {
 
   const textLength = sidebar.offsetWidth / 10
 
-  Array.prototype.forEach.call(tabList.childNodes, (tab, i) => {
+  Array.prototype.forEach.call(tabsDiv.childNodes, (tab, i) => {
 
     let view = views.childNodes.item(i)
 
@@ -185,7 +196,7 @@ function createTab(page = 'https://google.com') {
   const newTab = document.createElement('a')
   newTab.className = 'tab list-group-item active'
   newTab.textContent = page
-  tabList.appendChild(newTab)
+  tabsDiv.appendChild(newTab)
 
   const newView = document.createElement('webview')
   newView.setAttribute('src', page)
@@ -251,7 +262,7 @@ function handleTabClick(newTab, newView) {
  * @param tab
  */
 function closeTab(tab, view) {
-  tabList.removeChild(tab)
+  tabsDiv.removeChild(tab)
   views.removeChild(view)
 }
 
@@ -280,9 +291,9 @@ function setToActive(tab, view) {
 function removeAllActive() {
 
   // Remove active tabs and views
-  Array.prototype.forEach.call(tabList.childNodes, (tab, i) => {
+  Array.prototype.forEach.call(tabsDiv.childNodes, (tab, i) => {
 
-    const view = views.childNodes.item(i)
+    const view = viewsDiv.childNodes.item(i)
     removeActive(view)
     view.classList.add('hide')
 

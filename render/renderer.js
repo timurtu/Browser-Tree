@@ -6,29 +6,39 @@ const go = document.getElementById('go')
 const goForm = document.getElementById('go-form')
 const urlBar = document.getElementById('urlbar')
 
-const views = document.getElementById('views')
-const tabs = document.getElementById('tabs')
+// Div containing webviews
+const viewsDiv = document.getElementById('views')
+const views = Array.prototype.slice.call(viewsDiv)
 
+const tabsDiv = document.getElementById('tabs')
+const tabs = []
 
 let currentView
 let currentURL
 let currentTab
 
+console.log(views)
+
 /**
  * Observe the current active view and set the URL of
  * the current active tab and urlbar accordingly.
  *
- * @type {MutationObserver} Observe the views div's children
+ * @type {MutationObserver} Observe the webview div's children
  */
-const viewObserver = new MutationObserver(viewChanges => {
+const webviewObserver = new MutationObserver(webviewMutations => {
 
-  viewChanges.forEach((viewChanged) => {
+  webviewMutations.forEach((mutation) => {
 
-    // If there's any views
-    if (views.hasChildNodes()) {
+    // If there's any webview
+    if (viewsDiv.hasChildNodes()) {
+
+      // if (views.length > 0) {
+
+      // views.forEach(viewsDiv, view => {
+
 
       // Iterate through them
-      Array.prototype.forEach.call(views.childNodes, (view, i) => {
+      Array.prototype.forEach.call(viewsDiv.childNodes, (view, i) => {
 
         // If this view is the active one
         if (view.classList.contains('active')) {
@@ -44,22 +54,24 @@ const viewObserver = new MutationObserver(viewChanges => {
           if (tabs.hasChildNodes()) {
 
             // If there's a tab that corresponds to this view
-            if (tabs.childNodes.item(i)) {
+            if (tabsDiv.childNodes.item(i)) {
 
               // Keep a reference to that tab
-              currentTab = tabs.childNodes.item(i)
+              currentTab = tabsDiv.childNodes.item(i)
               resizeTabNames()
 
             }
+            // }
           }
+          // })
         }
       })
     }
   })
 })
 
-// Actually observe the list of views
-viewObserver.observe(views, {attributes: true, subtree: true})
+// Actually observe the list of webview
+webviewObserver.observe(viewsDiv, {attributes: true, subtree: true})
 
 // Load the URL in the address bar
 go.onclick = () => {
