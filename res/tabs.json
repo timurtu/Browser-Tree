@@ -1,1 +1,7 @@
-["https://npmjs.org","https://github.com", "http://electron.atom.io"]
+[
+  "https://npmjs.org",
+  "http://mdn.io",
+  "https://github.com/timurtu/markup",
+  "https://github.com/timurtu/browster",
+  "http://electron.atom.io"
+]

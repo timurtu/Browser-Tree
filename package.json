@@ -7,7 +7,7 @@
     "start": "npm-run-all --parallel electron lint",
     "electron": "electron main.js",
     "test": "karma start spec/karma.conf.js",
-    "lint": "node_modules/jshint/bin/jshint --verbose --reporter=node_modules/jshint-stylish ./",
+    "lint": "node_modules/jshint/bin/jshint --verbose --reporter=node_modules/jshint-stylish ./src ./main.js",
     "clean": "rm -Rf node_modules"
   },
   "jshintConfig": {
