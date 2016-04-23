@@ -8,7 +8,7 @@ const menuButton = document.getElementById('menu')
 const newtabButton = document.getElementById('newtab')
 const sidebar = document.getElementById('sidebar')
 const views = document.getElementById('views')
-// const tabList = document.getElementById('tabs')
+const tabList = document.getElementById('tabs')
 const urlBar = document.getElementById('urlbar')
 const resizeBar = document.getElementById('resizebar')
 

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm-run-all --parallel electron lint",
     "electron": "electron main.js",
-    "test": "karma start tests/karma.conf.js",
+    "test": "karma start spec/karma.conf.js",
     "lint": "node_modules/jshint/bin/jshint --verbose --reporter=node_modules/jshint-stylish ./",
     "clean": "rm -Rf node_modules"
   },
@@ -16,9 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/timurtu/browser.git"
+    "url": "git+https://github.com/timurtu/browster.git"
   },
   "keywords": [
+    "browster",
     "Electron",
     "Web",
     "Browser",
@@ -27,9 +28,9 @@
   "author": "Timur Uzel <timurt.uzel@gmail.com> (https://github.com/timurtu)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/timurtu/browser/issues"
+    "url": "https://github.com/timurtu/browster/issues"
   },
-  "homepage": "https://github.com/timurtu/browser#readme",
+  "homepage": "https://github.com/timurtu/browster#readme",
   "devDependencies": {
     "electron-compilers": "^3.0.0",
     "electron-prebuilt": "^0.37.7",
@@ -40,8 +41,7 @@
     "jshint-stylish": "^2.1.0",
     "karma": "^0.13.22",
     "karma-electron-launcher": "^0.1.0",
-    "karma-mocha": "^0.2.2",
-    "mocha": "^2.4.5",
+    "karma-jasmine": "^0.3.8",
     "npm-run-all": "^1.7.0"
   },
   "dependencies": {

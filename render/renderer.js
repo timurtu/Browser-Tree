@@ -6,12 +6,8 @@ const go = document.getElementById('go')
 const goForm = document.getElementById('go-form')
 const urlBar = document.getElementById('urlbar')
 
-// Div containing webviews
 const viewsDiv = document.getElementById('views')
-const views = Array.prototype.slice.call(viewsDiv)
-
 const tabsDiv = document.getElementById('tabs')
-const tabs = []
 
 let currentView
 let currentURL
@@ -28,42 +24,27 @@ console.log(views)
 const webviewObserver = new MutationObserver(webviewMutations => {
 
   webviewMutations.forEach((mutation) => {
-
     // If there's any webview
     if (viewsDiv.hasChildNodes()) {
-
-      // if (views.length > 0) {
-
-      // views.forEach(viewsDiv, view => {
-
-
       // Iterate through them
       Array.prototype.forEach.call(viewsDiv.childNodes, (view, i) => {
-
         // If this view is the active one
         if (view.classList.contains('active')) {
-
           // Keep a reference to it
           currentView = view
           // And its URL
           currentURL = currentView.getAttribute('src')
           // Set it to the address bar
           urlBar.value = currentURL
-
           // If there's any tabs
-          if (tabs.hasChildNodes()) {
-
+          if (tabsDiv.hasChildNodes()) {
             // If there's a tab that corresponds to this view
             if (tabsDiv.childNodes.item(i)) {
-
               // Keep a reference to that tab
               currentTab = tabsDiv.childNodes.item(i)
               resizeTabNames()
-
             }
-            // }
           }
-          // })
         }
       })
     }
