@@ -140,8 +140,8 @@ document.onmouseup = event => {
     // Set these values back to the minimum to handle the smaller
     // value the user tried to put and after toggling the sidebar
     // so the transition works as expected.
-    sidebar.style.width = `${min}px`
-    resizeBar.style.left = `${min}px`
+    sidebar.style.width = '20em'
+    resizeBar.style.left = `20em`
 
   } else if (sidebar.offsetWidth > max) {
 
