@@ -13,8 +13,6 @@ let currentView
 let currentURL
 let currentTab
 
-console.log(views)
-
 /**
  * Observe the current active view and set the URL of
  * the current active tab and urlbar accordingly.
@@ -28,6 +26,7 @@ const webviewObserver = new MutationObserver(webviewMutations => {
     if (viewsDiv.hasChildNodes()) {
       // Iterate through them
       Array.prototype.forEach.call(viewsDiv.childNodes, (view, i) => {
+
         // If this view is the active one
         if (view.classList.contains('active')) {
           // Keep a reference to it

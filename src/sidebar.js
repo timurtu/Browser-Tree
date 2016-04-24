@@ -6,6 +6,8 @@ import fs from 'fs'
 
 const menuButton = document.getElementById('menu')
 const newtabButton = document.getElementById('newtab')
+const backButton = document.getElementById('back')
+const forwardButton = document.getElementById('forward')
 const sidebar = document.getElementById('sidebar')
 const views = document.getElementById('views')
 const urlBar = document.getElementById('urlbar')
@@ -16,24 +18,6 @@ const maxSidebarWidth = 800
 const defaultSidebarWidth = '20em';
 const tabsFile = './res/tabs.json'
 
-/**
- * Save tab
- */
-// app.on('window-all-closed', () => {
-//   fs.writeFile(tabsFile, JSON.stringify(tabsList), (err) => {
-//     if (err) throw err
-//   })
-// })
-
-function saveTabs() {
-  
- 
-  // fs.writeFile(tabsFile, , err => {
-  //   if(err) throw err
-  // })
-}
-
-saveTabs()
 
 /**
  * Read tabs from a JSON file
@@ -52,6 +36,14 @@ menuButton.onclick = () => {
 
 newtabButton.onclick = () => {
   createTab()
+}
+
+backButton.onclick = event => {
+  back()
+}
+
+forwardButton.onclick = event => {
+  forward()
 }
 
 // Boolean reference to whether or not the sidebar is resizing
@@ -99,15 +91,15 @@ function resizeTabNames() {
     if (view) {
 
       if (view.src.length > textLength) {
+
         tab.textContent = `${view.src.slice(0, textLength)}...`
+
       } else {
+
         tab.textContent = view.src
       }
-
     }
-
   })
-
 }
 
 /**
@@ -301,5 +293,23 @@ function removeAllActive() {
 function removeActive(element) {
   if (element.classList.contains('active')) {
     element.classList.remove('active')
+  }
+}
+
+/**
+ * Return to the previous page on this webview
+ */
+function back() {
+  if (currentView.canGoBack()) {
+    currentView.goBack()
+  }
+}
+
+/**
+ * Go to the next page on this webview
+ */
+function forward() {
+  if (currentView.canGoForward()) {
+    currentView.goForward()
   }
 }
