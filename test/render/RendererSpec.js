@@ -12,9 +12,6 @@ describe('The URL Bar', () => {
 
     expect(true).not.toBe(false)
 
-    // expect(viewsDiv).toBe(tabsDiv)
-
   })
-
 
 })
