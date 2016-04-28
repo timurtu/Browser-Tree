@@ -1,7 +1,7 @@
 [
   "https://npmjs.org",
+  "http://nodejs.org",
   "http://mdn.io",
-  "https://github.com/timurtu/markup",
-  "https://github.com/timurtu/browster",
+  "https://github.com",
   "http://electron.atom.io"
 ]
