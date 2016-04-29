@@ -77,16 +77,40 @@ function goToURL() {
 
   let url;
 
+  const urlRegexp = /(?:\w*\.)\w+/;
+
   // Handle the user not entering http
-  if (urlBar.value.startsWith('http')) {
-    url = urlBar.value
-  } else {
-    url = `http://${urlBar.value}`
+  // if (urlBar.value.startsWith('http')) {
+  if (urlRegexp.test(urlBar.value)) {
+
+    if (urlBar.value.startsWith('http')) {
+
+      url = urlBar.value
+    } else {
+
+      url = `http://${urlBar.value}`
+    }
+  }
+  else {
+
+    // Search google
+
+    const words = urlBar.value.split(' ')
+    let searchQuery
+
+    if (words.length === 1) {
+      searchQuery = words
+    } else {
+      searchQuery = words.join('+')
+    }
+
+    url = `https://www.google.com/?gws_rd=ssl#q=${searchQuery}`
+
   }
 
-  // Electron method to load the URL
+// Electron method to load the URL
   currentView.loadURL(url)
 
-  // Scroll to the top of the new page
+// Scroll to the top of the new page
   window.scrollTo(0, 0)
 }
