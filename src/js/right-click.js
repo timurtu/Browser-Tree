@@ -2,7 +2,9 @@
  * Created by timur on 4/24/16.
  */
 
-import {remote} from 'electron'
+import {
+  remote
+} from 'electron'
 
 const Menu = remote.Menu
 const MenuItem = remote.MenuItem
