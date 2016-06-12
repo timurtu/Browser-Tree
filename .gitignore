@@ -2,3 +2,4 @@ node_modules/
 .idea/
 *.html
 *.css
+/npm-debug.log
