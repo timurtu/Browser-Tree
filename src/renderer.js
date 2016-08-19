@@ -21,7 +21,7 @@ let currentTab
  */
 const webviewObserver = new MutationObserver(webviewMutations => {
 
-  webviewMutations.forEach((mutation) => {
+  webviewMutations.forEach(() => {
     // If there's any webview
     if (viewsDiv.hasChildNodes()) {
       // Iterate through them
@@ -55,13 +55,8 @@ const webviewObserver = new MutationObserver(webviewMutations => {
 webviewObserver.observe(viewsDiv, {attributes: true, subtree: true})
 
 // Load the URL in the address bar
-go.onclick = () => {
-  goToURL()
-}
-goForm.addEventListener('submit', (event) => {
-  event.preventDefault()
-  goToURL()
-})
+go.addEventListener('click', goToURL)
+goForm.addEventListener('submit', goToURL)
 
 // Select all text when the address bar is clicked
 urlBar.onclick = (event) => {
@@ -73,7 +68,8 @@ urlBar.onclick = (event) => {
  * Use the address bar's value to navigate to a new page
  * with the current view.
  */
-function goToURL() {
+function goToURL(event) {
+  event.preventDefault()
 
   let url;
 

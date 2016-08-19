@@ -5,7 +5,7 @@ html
         title='Browser Tree'
         link(href='node_modules/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet')
         link(href='./node_modules/font-awesome/css/font-awesome.min.css' rel='stylesheet').
-        link(href='src/less/main.less' rel='stylesheet')
+        link(href='src/main.less' rel='stylesheet')
     body
         div.container-fluid
             nav.navbar.navbar-darg.bg-inverse.navbar-fixed-top.row
@@ -37,10 +37,6 @@ html
             div#tabs.list-group.btn-secondary-outline
         div#views
 
-        script(src='./node_modules/jquery/sizzle/dist/sizzle.min.js').
-        script(src='./node_modules/jquery/dist/jquery.min.js').
-        script(src='./node_modules/tether/dist/js/tether.min.js').
-        script(defer src='./node_modules/bootstrap/dist/js/bootstrap.min.js').
-        script(src='./src/js/renderer.js').
-        script(src='./src/js/sidebar.js').
-        script(src='./src/js/right-click.js').
+        script(src='./src/renderer.js').
+        script(src='./src/sidebar.js').
+        script(src='./src/right-click.js').
